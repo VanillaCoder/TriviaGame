@@ -1,4 +1,21 @@
-//TODO: start a timer when the user hits start
+
+
+function timer() {
+    time = 30;
+    clearInterval(intervalId);
+    intervalId = setInterval(count, 1000);
+}
+
+function count() {
+    if (time > 0) {
+        time--;
+        $("#counter").text("You have " + time + " seconds to answer the question.. or die?");
+    }
+    else {
+        score()
+    }
+
+}
 
 
 //restarts the game
@@ -18,14 +35,14 @@ function restart() {
 
 }
 
-function finalScreen(){
-    if(scoreTracker.indexOf(1) === 0){
+function finalScreen() {
+    if (scoreTracker.indexOf(1) === 0) {
         scores++
     }
-    if(scoreTracker.indexOf(3) === 1){
+    if (scoreTracker.indexOf(3) === 1) {
         scores++
     }
-    if(scoreTracker.indexOf(2) === 2){
+    if (scoreTracker.indexOf(2) === 2) {
         scores++
     }
     $("#final").text("You got " + scores + " of 3 questions correct.")
@@ -45,6 +62,10 @@ function score() {
         scoreTracker.push(qOneThree)
         next()
     }
+    else if ((qOneOne + qOneTwo + qOneThree) === 0) {
+        scoreTracker.push(5)
+        next()
+    }
     else {
         scoreTracker = []
         next()
@@ -55,30 +76,44 @@ function score() {
 
 //hide shows the correct things
 function next() {
+    qOneOne = 0;
+    qOneTwo = 0;
+    qOneThree = 0;
     if (oneHidden === 0) {
         $("#questionOne").show();
         oneHidden = 1;
+        timer()
+
     }
     else if (twoHidden === 0) {
         $("#questionOne").hide();
         $("#questionTwo").show();
         twoHidden = 1;
+        timer()
+
     }
     else if (threeHidden === 0) {
         $("#questionTwo").hide();
         $("#questionThree").show();
         threeHidden = 1;
+        timer()
+
     }
     else {
         $("#questionThree").hide()
         $("#final").show()
         $("#restart").show()
+        $("#counter").hide()
         $("#next").hide()
+        clearInterval(intervalId)
         finalScreen()
     }
+    $("#counter").text("You have " + time + " seconds to answer the question.. or die?");
+
 }
 
-
+var intervalId;
+var time = 30;
 var scores = 0;
 //variables to track what is hidden 1 showing 0 not
 var oneHidden = 0;
@@ -99,14 +134,17 @@ $("#questionTwo").hide();
 $("#questionThree").hide();
 $("#next").hide();
 $("#final").hide();
-$("#restart").hide()
+$("#restart").hide();
+$("#counter").hide();
+$("#counter").text("You have " + time + " seconds to answer the question.. or die?");
 
 
 //start button
 $("#start").on("click", function () {
     $("#start").hide();
-    next()
+    next();
     $("#next").show();
+    $("#counter").show();
 })
 
 //next button
