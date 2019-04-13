@@ -119,7 +119,7 @@ var scores = 0;
 var oneHidden = 0;
 var twoHidden = 0;
 var threeHidden = 0;
-//hard coded right wrong answers
+//hard-coded right wrong answers
 var scoreTracker = [];
 var scoreCard = [1, 3, 2];
 //values change and are recorded each next click

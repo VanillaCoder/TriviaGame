@@ -3,8 +3,12 @@
 }
 
 .jumbotron{
+    height: 500px;
+    width: 1300px;
     text-align: center;
-    margin: 50px 100px 50px;
+    margin: 120px 120px 50px;
+    background-image: url(../images/NeglectedFineDuckbillplatypus-size_restricted.gif);
+
 }
 
 #start{
@@ -17,4 +21,10 @@
 
 #restart{
     margin: 40px 0px 0px;
+}
+
+
+body{
+    background-image: url(../images/the_holy_grail_dock_icons_612594_img_644.png);
+    color: white;
 }
