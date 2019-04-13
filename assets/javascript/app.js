@@ -1,5 +1,7 @@
 
 
+
+
 function timer() {
     time = 30;
     clearInterval(intervalId);
